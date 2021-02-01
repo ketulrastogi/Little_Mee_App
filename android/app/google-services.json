@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "346164742003",
+    "project_id": "little-mee",
+    "storage_bucket": "little-mee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346164742003:android:8f24a650e21ef7cbca6706",
+        "android_client_info": {
+          "package_name": "in.bugle.little_mee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346164742003-79rd14dhaubk7t883lkvo6ns4f3c1j1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.bugle.little_mee",
+            "certificate_hash": "33dda24071dac1d2d0d430c5f8043de41522f300"
+          }
+        },
+        {
+          "client_id": "346164742003-t14dqnsscik1khbo54pv07lij94smn8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKMt5vzm7SgxmEhJYJhGJ1Uqm0BpItay0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346164742003-t14dqnsscik1khbo54pv07lij94smn8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
