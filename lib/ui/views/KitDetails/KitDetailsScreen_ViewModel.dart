@@ -50,6 +50,11 @@ class KitDetailsScreenViewModel extends BaseViewModel {
     }
   }
 
+  signOut() async {
+    await _authService.signOut();
+    _navigationService.clearStackAndShow(Routes.loginViewRoute);
+  }
+
   navigateToBookDetailsScreen(
       Map<String, dynamic> kitDetails, Map<String, dynamic> bookDetails) {
     _navigationService.navigateTo(

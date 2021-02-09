@@ -15,38 +15,31 @@ class RootView extends StatelessWidget {
             // backgroundColor: Colors.grey.shade900,
             // backgroundColor: Colors.purple.shade50,
             // backgroundColor: Theme.of(context).primaryColor,
-            body: Center(
-              // child: CircularProgressIndicator(
-              //   valueColor: AlwaysStoppedAnimation<Color>(kWhiteColor),
-              // ),
-              // child:
-              //     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              //   Icon(
-              //     Icons.star,
-              //     size: 64.0,
-              //     color: Theme.of(context).primaryColor,
-              //   ),
-              //   Container(
-              //     height: 64.0,
-              //     margin: EdgeInsets.all(8.0),
-              //     decoration: BoxDecoration(
-              //       border:
-              //           Border.all(width: 0.5, color: Colors.purple.shade500),
-              //     ),
-              //   ),
-              //   SizedBox(width: 4.0),
-              //   Text(
-              //     'Little\nMee App',
-              //     style: Theme.of(context).textTheme.headline5.copyWith(
-              //           // color: Theme.of(context).primaryColor,
-              //           fontWeight: FontWeight.bold,
-              //         ),
-              //   ),
-              // ]),
-              child: Container(
-                width: 300.0,
-                child: Image.asset('assets/logo.png'),
-              ),
+            body: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/background_pastel.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Container(
+                      width: 300.0,
+                      child: Image.asset('assets/logo.png'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );

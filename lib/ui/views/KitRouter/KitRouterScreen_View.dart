@@ -35,10 +35,10 @@ class _KitRouterScreenViewState extends State<KitRouterScreenView> {
     try {
       _userProfile = await _authService.getUserProfile();
 
-      if (_userProfile['kit_count'].toString() == "0") {
+      if (_userProfile['kit_count'] == 0) {
         _navigationService.clearStackAndShow(Routes.scratchCardScreenViewRoute);
       } else {
-        _navigationService.clearStackAndShow(Routes.dashboardScreenViewRoute);
+        _navigationService.clearStackAndShow(Routes.homeViewRoute);
       }
     } catch (e) {
       _snackbarService.showSnackbar(
@@ -51,7 +51,8 @@ class _KitRouterScreenViewState extends State<KitRouterScreenView> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: Text('KitRouter'),
+          // child: CircularProgressIndicator(),
         ),
       ),
     );

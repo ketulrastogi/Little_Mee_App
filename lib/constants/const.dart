@@ -5,7 +5,7 @@ const String imageBaseUrl =
     'http://sampleserver.org/starmath/uploads/thumbnails/topic_thumbnails/';
 const String hintImageBaseUrl =
     'http://sampleserver.org/starmath/uploads/hint/';
-const String baseAPIUrl = 'http://sampleserver.org/maths_lee/api';
+const String baseAPIUrl = 'http://littleme.chetanapublications.com/api/';
 
 const kOrangeColor = const Color(0xFFFC6A57);
 const kBlueLightColor = const Color(0xFF007EFF);
@@ -70,3 +70,16 @@ final TextTheme kTextTheme = TextTheme(
   // overline: GoogleFonts.inter(
   //     fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
 );
+
+Color getBackgroundColor(int index) {
+  if (index % 4 == 0) {
+    return Colors.blue;
+  }
+  if (index % 3 == 0) {
+    return Colors.orange;
+  }
+  if (index % 2 == 0) {
+    return Colors.green;
+  }
+  return Colors.pink;
+}

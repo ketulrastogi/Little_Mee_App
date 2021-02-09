@@ -247,13 +247,25 @@ class FirebaseAuthService with ReactiveServiceMixin {
 
   Future<Map<String, dynamic>> getUserProfile() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
     // sharedPreferences.setString('user_profile', null);
     print(sharedPreferences.getString('user_profile'));
     Map<String, dynamic> data =
         (sharedPreferences.getString('user_profile') != null)
             ? jsonDecode(sharedPreferences.getString('user_profile'))
             : null;
-    return data;
+    print('FirebaseAuthService:257 - Data : $data');
+    if (data != null) {
+      http.Response response = await http.get(
+        "$baseAPIUrl/get_profile/${data['id']}",
+      );
+      print('AUthService 260: UserPRofile - ${response.body}');
+      String jsonsDataString = response.body.toString();
+      Map<String, dynamic> userData = jsonDecode(jsonsDataString)['data'];
+      sharedPreferences.setString('user_profile', jsonEncode(userData));
+      return data;
+    }
+    return null;
   }
 
   Future<void> updateProfile(
@@ -264,24 +276,25 @@ class FirebaseAuthService with ReactiveServiceMixin {
     String mobile,
     String birthdate,
   ) async {
+    Map<String, dynamic> _body = {
+      'id': id,
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
+      'mobile': mobile,
+      'birthdate': birthdate,
+    };
     try {
       http.Response response = await http.post(
         "$baseAPIUrl/student_profile_edit",
-        body: {
-          'id': id,
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-          'mobile': mobile,
-          'birthdate': birthdate,
-        },
+        body: _body,
       );
 
       String jsonsDataString = response.body.toString();
       Map<String, dynamic> data = jsonDecode(jsonsDataString)['data'];
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      sharedPreferences.setString('user_profile', jsonEncode(data));
+      sharedPreferences.setString('user_profile', jsonEncode(_body));
       print('LoginService: $jsonsDataString');
       return jsonDecode(jsonsDataString);
     } catch (e) {

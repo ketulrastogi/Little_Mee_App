@@ -14,9 +14,15 @@ class BookDetailsScreenViewModel extends BaseViewModel {
   List<Map<String, dynamic>> _bookList = [];
   List<Map<String, dynamic>> get bookList => _bookList;
 
+  List<Map<String, dynamic>> _pdfList = [];
+  List<Map<String, dynamic>> get pdfList => _pdfList;
+
   getBookDetails(String bookId) async {}
 
+  setBookDetails(Map<String, dynamic> bookDetails) {}
+
   getTopics(String bookId) async {
+    print('BookId: $bookId');
     try {
       Map<String, dynamic> bookResponse = await _kitService.getTopics(bookId);
 
@@ -25,6 +31,7 @@ class BookDetailsScreenViewModel extends BaseViewModel {
             message: 'You have not purchased any Kits. ');
       } else {
         _bookList = [...bookResponse['data']];
+        print('BookDetailsViewModel:31 - BookList: $bookResponse');
         notifyListeners();
       }
     } catch (e) {
@@ -42,6 +49,21 @@ class BookDetailsScreenViewModel extends BaseViewModel {
           kitDetails: kitDetails,
           bookDetails: bookDetails,
           topicDetails: topicDetails),
+    );
+  }
+
+  signOut() async {
+    await _authService.signOut();
+    _navigationService.clearStackAndShow(Routes.loginViewRoute);
+  }
+
+  navigateToDocumentViewerScreen(String title, String url) {
+    _navigationService.navigateTo(
+      Routes.documentViewerScreenViewRoute,
+      arguments: DocumentViewerScreenViewArguments(
+        title: title,
+        url: url,
+      ),
     );
   }
 }

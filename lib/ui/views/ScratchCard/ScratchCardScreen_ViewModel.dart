@@ -75,11 +75,10 @@ class ScratchCardScreenViewModel extends BaseViewModel {
     try {
       Map<String, dynamic> response =
           await _kitService.validateScratchCardNumber(_scratchCardNumber);
-
+      setBusy(false);
       if (!response['result']) {
         _snackbarService.showSnackbar(
-            message:
-                'You have not purchased any Kits. ${response['message']} ');
+            message: 'You have not purchased any Kits. ${response['data']} ');
       } else {
         // _userKitList = [...response['data']];
         // notifyListeners();
@@ -90,7 +89,7 @@ class ScratchCardScreenViewModel extends BaseViewModel {
           description: 'Scratch Card is redeemed succesfully.',
         )
             .then((value) {
-          _navigationService.clearStackAndShow(Routes.dashboardScreenViewRoute);
+          _navigationService.clearStackAndShow(Routes.homeViewRoute);
           return;
         });
       }

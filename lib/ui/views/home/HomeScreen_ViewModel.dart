@@ -30,9 +30,12 @@ class HomeScreenViewModel extends BaseViewModel {
     try {
       _userProfile = await _authService.getUserProfile();
 
-      if (_userProfile['kit_count'] == '0') {
-        // _navigationService.clearStackAndShow(Routes.scratchCardScreenViewRoute);
-      }
+      print('HomeScreenViewModel:33 - UserProfile: $_userProfile');
+      print('Type of KitCount ${_userProfile['kit_count'].runtimeType}');
+
+      // if (_userProfile['kit_count'] == 0) {
+      //   _navigationService.clearStackAndShow(Routes.scratchCardScreenViewRoute);
+      // }
 
       Map<String, dynamic> response = await _kitService.getKit();
 
@@ -110,6 +113,10 @@ class HomeScreenViewModel extends BaseViewModel {
   signOut() async {
     await _authService.signOut();
     _navigationService.clearStackAndShow(Routes.loginViewRoute);
+  }
+
+  navigateToProfileScreen() async {
+    await _navigationService.navigateTo(Routes.userProfileViewRoute);
   }
 
   navigateToKitDetailsScreen(Map<String, dynamic> kitDetails) {

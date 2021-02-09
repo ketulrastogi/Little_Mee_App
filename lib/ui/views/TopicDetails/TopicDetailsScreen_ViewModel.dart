@@ -59,14 +59,9 @@ class TopicDetailsScreenViewModel extends BaseViewModel {
     }
   }
 
-  navigateToDocumentViewerScreen(String title, String url) {
-    _navigationService.navigateTo(
-      Routes.documentViewerScreenViewRoute,
-      arguments: DocumentViewerScreenViewArguments(
-        title: title,
-        url: url,
-      ),
-    );
+  signOut() async {
+    await _authService.signOut();
+    _navigationService.clearStackAndShow(Routes.loginViewRoute);
   }
 
   navigateToWebViewerScreen(String url) async {

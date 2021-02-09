@@ -107,25 +107,21 @@ class OtpViewModel extends BaseViewModel {
             .showCustomDialog(
           mainButtonTitle: 'Close',
           title: 'Success',
-          description:
-              'User registration is successful. Please login now to get started.',
+          description: 'User registration is successful. Let\'s get started.',
         )
-            .then((value) {
-          _navigationService.navigateTo(
-            Routes.loginViewRoute,
+            .then((value) async {
+          Map<String, dynamic> loginResponse = await _authService.loginUser(
+            _phoneNumber,
+            _password,
           );
+          if (!loginResponse['result']) {
+            _snackbarService.showSnackbar(
+                message: 'An error occured while register.');
+          } else {
+            _navigationService.clearStackAndShow(Routes.homeViewRoute);
+          }
           return;
         });
-        Map<String, dynamic> loginResponse = await _authService.loginUser(
-          _phoneNumber,
-          _password,
-        );
-        if (!loginResponse['result']) {
-          _snackbarService.showSnackbar(
-              message: 'An error occured while register.');
-        } else {
-          _navigationService.navigateTo(Routes.dashboardScreenViewRoute);
-        }
       }
     } catch (e) {
       _snackbarService.showSnackbar(

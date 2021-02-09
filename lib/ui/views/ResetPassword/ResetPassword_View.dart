@@ -19,198 +19,253 @@ class ResetPasswordView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              iconTheme: IconThemeData(
-                color: Colors.white,
-              ),
-            ),
+            // appBar: AppBar(
+            //   backgroundColor: Colors.transparent,
+            //   elevation: 0,
+            //   iconTheme: IconThemeData(
+            //     color: Colors.white,
+            //   ),
+            // ),
             // backgroundColor: Colors.purple.shade50,
             body: Form(
               key: _formKey,
-              child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    height: MediaQuery.of(context).size.width / 2,
-                    // color: Colors.purple.shade50,
-                    child: Center(
-                      // child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.center,
-                      //     children: [
-                      //       Icon(
-                      //         Icons.star,
-                      //         size: 64.0,
-                      //         color: Theme.of(context).primaryColor,
-                      //       ),
-                      //       Container(
-                      //         height: 64.0,
-                      //         margin: EdgeInsets.all(8.0),
-                      //         decoration: BoxDecoration(
-                      //           border: Border.all(
-                      //               width: 0.5, color: Colors.purple.shade500),
-                      //         ),
-                      //       ),
-                      //       SizedBox(width: 4.0),
-                      //       Text(
-                      //         'Star\nEducation',
-                      //         style:
-                      //             Theme.of(context).textTheme.headline5.copyWith(
-                      //                   // color: Theme.of(context).primaryColor,
-                      //                   fontWeight: FontWeight.bold,
-                      //                 ),
-                      //       ),
-                      //     ]),
-                      child: LogoWidgetView(),
+                  Positioned(
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset(
+                      'assets/background_pastel.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  SizedBox(
-                    height: 32.0,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: 16.0,
-                      top: 16.0,
-                    ),
-                    child: Text(
-                      'Reset Password',
-                      style: Theme.of(context).textTheme.headline6.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Headline',
-                            // color: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: ListView(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Container(
-                          child: TextFormField(
-                            controller: _newPasswordController,
-                            style:
-                                Theme.of(context).textTheme.subtitle1.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                    ),
-                            decoration: InputDecoration(
-                              hintText: '*******',
-                              labelText: 'Password',
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                    fontFamily: 'Body',
-                                  ),
-                              filled: true,
-                              isDense: true,
-                            ),
-                            obscureText: true,
-                            onSaved: (String value) {
-                              model.setNewPassword(value);
-                            },
-                            validator: (String value) {
-                              if (value.isEmpty) {
-                                return 'Password can not be empty';
-                              } else if (value.length < 6) {
-                                return 'Password must be minimum 6 characters';
-                              }
-
-                              return null;
-                            },
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: MediaQuery.of(context).size.width / 2,
+                          // color: Colors.purple.shade50,
+                          child: Center(
+                            child: LogoWidgetView(),
                           ),
                         ),
                         SizedBox(
-                          height: 8.0,
+                          width: 16.0,
+                        ),
+                        SizedBox(
+                          height: 32.0,
                         ),
                         Container(
-                          child: TextFormField(
-                            controller: _confirmPasswordController,
+                          padding: EdgeInsets.only(
+                            left: 16.0,
+                            top: 16.0,
+                          ),
+                          child: Text(
+                            'Reset Password',
                             style:
-                                Theme.of(context).textTheme.subtitle1.copyWith(
+                                Theme.of(context).textTheme.headline6.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
+                                      fontFamily: 'Headline',
+                                      color: Colors.black,
                                     ),
-                            decoration: InputDecoration(
-                              hintText: '*******',
-                              labelText: 'Confirm Password',
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                    fontFamily: 'Body',
-                                  ),
-                              filled: true,
-                              isDense: true,
-                            ),
-                            obscureText: true,
-                            onSaved: (String value) {
-                              model.setConfirmPassword(value);
-                            },
-                            validator: (String value) {
-                              if (value.isEmpty) {
-                                return 'Confirm Password can not be empty';
-                              } else if (value.length < 6) {
-                                return 'Confirm Password must be minimum 6 characters';
-                              }
-
-                              return null;
-                            },
                           ),
                         ),
                         SizedBox(
-                          height: 24.0,
+                          height: 16.0,
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 32.0),
-                          child: MaterialButton(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32.0)),
-                            color: Theme.of(context).primaryColor,
-                            child: model.isBusy
-                                ? Container(
-                                    height: 17.0,
-                                    width: 17.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation(
-                                        Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 16.0, horizontal: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Container(
+                                child: TextFormField(
+                                  controller: _newPasswordController,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(
+                                        fontFamily: 'Body',
+                                        color: Colors.grey.shade800,
                                       ),
-                                      strokeWidth: 2.0,
-                                    ),
-                                  )
-                                : Text(
-                                    'UPDATE',
-                                    style: Theme.of(context)
+                                  decoration: InputDecoration(
+                                    hintText: '*******',
+                                    labelText: 'Password',
+                                    hintStyle: Theme.of(context)
                                         .textTheme
-                                        .button
+                                        .headline6
                                         .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          // color: Colors.white,
-                                          fontSize: 18.0,
                                           fontFamily: 'Body',
+                                          color: Colors.grey.shade800,
                                         ),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .copyWith(
+                                          fontFamily: 'Body',
+                                          color: Colors.grey.shade800,
+                                        ),
+                                    filled: true,
+                                    fillColor: Colors.white60,
+                                    isDense: true,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    border: OutlineInputBorder(),
                                   ),
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
+                                  obscureText: true,
+                                  onSaved: (String value) {
+                                    model.setNewPassword(value);
+                                  },
+                                  validator: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Password can not be empty';
+                                    } else if (value.length < 6) {
+                                      return 'Password must be minimum 6 characters';
+                                    }
 
-                                await model.resetPassword();
-                              }
-                            },
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              Container(
+                                child: TextFormField(
+                                  controller: _confirmPasswordController,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(
+                                        fontFamily: 'Body',
+                                        color: Colors.grey.shade800,
+                                      ),
+                                  decoration: InputDecoration(
+                                    hintText: '*******',
+                                    labelText: 'Confirm Password',
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .copyWith(
+                                          fontFamily: 'Body',
+                                          color: Colors.grey.shade800,
+                                        ),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .copyWith(
+                                          fontFamily: 'Body',
+                                          color: Colors.grey.shade800,
+                                        ),
+                                    filled: true,
+                                    fillColor: Colors.white60,
+                                    isDense: true,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  obscureText: true,
+                                  onSaved: (String value) {
+                                    model.setConfirmPassword(value);
+                                  },
+                                  validator: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Confirm Password can not be empty';
+                                    } else if (value.length < 6) {
+                                      return 'Confirm Password must be minimum 6 characters';
+                                    }
+
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 24.0,
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                                child: MaterialButton(
+                                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(32.0)),
+                                  color: Theme.of(context).primaryColor,
+                                  child: model.isBusy
+                                      ? Container(
+                                          height: 17.0,
+                                          width: 17.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                              Colors.white,
+                                            ),
+                                            strokeWidth: 2.0,
+                                          ),
+                                        )
+                                      : Text(
+                                          'UPDATE',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .button
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                // color: Colors.white,
+                                                fontSize: 18.0,
+                                                fontFamily: 'Body',
+                                              ),
+                                        ),
+                                  onPressed: () async {
+                                    if (_formKey.currentState.validate()) {
+                                      _formKey.currentState.save();
+
+                                      await model.resetPassword();
+                                    }
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    // bottom: 0,
+                    // left: 0,
+                    left: 8,
+                    child: InkWell(
+                      onTap: () async {
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32.0),
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: 32.0,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ],

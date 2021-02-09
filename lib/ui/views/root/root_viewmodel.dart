@@ -13,10 +13,21 @@ class RootViewModel extends StreamViewModel<AppUser> {
   Stream<AppUser> get stream => _authService.onAuthStateChange();
 
   checkAuthStatus() async {
-    await Future.delayed(Duration(seconds: 3));
+    // await Future.delayed(Duration(seconds: 3));
     Map<String, dynamic> userProfile = await _authService.getUserProfile();
+
     if (userProfile != null && userProfile['mobile'] != null) {
-      _navigationService.clearStackAndShow(Routes.kitRouterScreenViewRoute);
+      print(
+          'Type of KitCount ${userProfile['kit_count'].runtimeType} : ${userProfile['kit_count']}');
+      print('RootViewModel:22 - UserProfile: $userProfile');
+      if (userProfile['kit_count'] == 0) {
+        print('RootViewModel:24 - User does not have kits');
+        _navigationService.clearStackAndShow(Routes.scratchCardScreenViewRoute);
+      } else {
+        print('RootViewModel:27 - User does have kits');
+        _navigationService.clearStackAndShow(Routes.homeViewRoute);
+      }
+      // _navigationService.clearStackAndShow(Routes.kitRouterScreenViewRoute);
     } else {
       _navigationService.clearStackAndShow(Routes.loginViewRoute);
     }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/views/BookDetails/BookDetailsScreen_ViewModel.dart';
+import 'package:little_mee/constants/const.dart';
+import 'package:auto_animated/auto_animated.dart';
 
 class BookDetailsScreenView extends StatelessWidget {
   final Map<String, dynamic> kitDetails;
@@ -16,234 +18,336 @@ class BookDetailsScreenView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            appBar: AppBar(
-              title: Text(
-                '${kitDetails['name']}',
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                      fontFamily: 'Headline',
-                    ),
-              ),
-              // titleSpacing: 4.0,
-              centerTitle: true,
-              iconTheme: IconThemeData(
-                size: 40.0,
-                color: Colors.white,
-              ),
-              // automaticallyImplyLeading: false,
-              backgroundColor: Colors.grey.shade900,
-            ),
-            body: Center(
-              child: ListView(
-                padding: EdgeInsets.all(16.0),
-                children: [
-                  Container(
-                    // height: 180.0,
-                    child: Column(
-                      children: [
-                        Row(
+            // appBar: AppBar(
+            //   title: Text(
+            //     '${kitDetails['name']}',
+            //     style: Theme.of(context).textTheme.headline6.copyWith(
+            //           fontFamily: 'Headline',
+            //         ),
+            //   ),
+            //   // titleSpacing: 4.0,
+            //   centerTitle: true,
+            //   iconTheme: IconThemeData(
+            //     size: 40.0,
+            //     color: Colors.white,
+            //   ),
+            //   // automaticallyImplyLeading: false,
+            //   backgroundColor: Colors.grey.shade900,
+            // ),
+            body: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/background.jpg',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.lightBlue.withOpacity(0.2),
+                  ),
+                ),
+                Positioned(
+                  top: 64,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: ListView(
+                    padding: EdgeInsets.all(16.0),
+                    children: [
+                      Container(
+                        // height: 180.0,
+                        child: Column(
                           children: [
-                            Container(
-                              height: 150.0,
-                              width: 150.0,
-                              padding: EdgeInsets.all(16.0),
-                              child: Image.network(
-                                '${bookDetails['image']}',
-                                fit: BoxFit.fill,
-                              ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 150.0,
+                                  width: 150.0,
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Image.network(
+                                    '${bookDetails['image']}',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          child: Text(
+                                            '${bookDetails['book']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5
+                                                .copyWith(
+                                                  fontFamily: 'Headline',
+                                                  color: Colors.black,
+                                                ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 8.0,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        '${bookDetails['book']}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5
-                                            .copyWith(
-                                              fontFamily: 'Headline',
-                                            ),
-                                      ),
+                            Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 150.0,
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Text(
+                                      'Description',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6
+                                          .copyWith(
+                                            fontFamily: 'Headline',
+                                            color: Colors.black,
+                                          ),
                                     ),
-                                    SizedBox(
-                                      height: 8.0,
-                                    ),
-                                    Container(
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      // width: 180.0,
+                                      padding: EdgeInsets.all(16.0),
                                       child: Text(
-                                        '${int.parse(bookDetails['chaptercount'])} ${int.parse(bookDetails['chaptercount']) > 1 ? 'Chapters' : 'Chapter'}',
+                                        '${bookDetails['description']}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
                                             .copyWith(
                                               fontFamily: 'Body',
+                                              color: Colors.grey.shade800,
                                             ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 8.0,
-                                    ),
-                                    Text(
-                                      '${int.parse(bookDetails['video count'])} ${int.parse(bookDetails['video count']) > 1 ? 'Videos' : 'Video'}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle1
-                                          .copyWith(
-                                            fontFamily: 'Body',
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                        Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 150.0,
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Description',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                        fontFamily: 'Headline',
-                                      ),
-                                ),
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      if (bookDetails['worksheet'].length > 0)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'Worksheets',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontFamily: 'Headline',
+                                      color: Colors.black,
+                                    ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  // width: 180.0,
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Text(
-                                    '${bookDetails['description']}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .subtitle1
-                                        .copyWith(
-                                          fontFamily: 'Body',
+                            ),
+                            Container(
+                              height: 128.0,
+                              child: LiveList(
+                                padding: EdgeInsets.all(16.0),
+                                showItemInterval: Duration(milliseconds: 150),
+                                showItemDuration: Duration(milliseconds: 350),
+                                reAnimateOnVisibility: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: bookDetails['worksheet'].length,
+                                itemBuilder: (
+                                  context,
+                                  index,
+                                  Animation<double> animation,
+                                ) {
+                                  return FadeTransition(
+                                    opacity: Tween<double>(
+                                      begin: 0,
+                                      end: 1,
+                                    ).animate(animation),
+                                    child: SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: Offset(0, -0.1),
+                                        end: Offset.zero,
+                                      ).animate(animation),
+                                      child: Card(
+                                        color: getBackgroundColor(index),
+                                        child: InkWell(
+                                          onTap: () {
+                                            model
+                                                .navigateToDocumentViewerScreen(
+                                                    kitDetails['name'],
+                                                    bookDetails['worksheet']
+                                                        [index]['worksheet']);
+                                          },
+                                          child: Container(
+                                            width: 128.0,
+                                            // color: Colors.amber,
+                                            child: Icon(
+                                              Icons.insert_drive_file,
+                                              size: 48.0,
+                                            ),
+                                          ),
                                         ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      SizedBox(
+                        height: 24.0,
+                      ),
+                      if (bookDetails['topic'].length > 0)
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            'Topics',
+                            style:
+                                Theme.of(context).textTheme.headline6.copyWith(
+                                      fontFamily: 'Headline',
+                                      color: Colors.black,
+                                    ),
+                          ),
+                        ),
+                      if (bookDetails['topic'].length > 0)
+                        LiveList(
+                          padding: EdgeInsets.all(16.0),
+                          showItemInterval: Duration(milliseconds: 150),
+                          showItemDuration: Duration(milliseconds: 350),
+                          reAnimateOnVisibility: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: bookDetails['topic'].length,
+                          itemBuilder: (
+                            context,
+                            index,
+                            Animation<double> animation,
+                          ) {
+                            return FadeTransition(
+                              opacity: Tween<double>(
+                                begin: 0,
+                                end: 1,
+                              ).animate(animation),
+                              child: SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: Offset(0, -0.1),
+                                  end: Offset.zero,
+                                ).animate(animation),
+                                child: Card(
+                                  color: getBackgroundColor(index),
+                                  child: InkWell(
+                                    onTap: () {
+                                      model.navigateToTopicDetailsScreen(
+                                          kitDetails,
+                                          bookDetails,
+                                          bookDetails['topic'][index]);
+                                    },
+                                    child: Container(
+                                      height: 96.0,
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.wysiwyg,
+                                            size: 48.0,
+                                          ),
+                                          SizedBox(
+                                            width: 16.0,
+                                          ),
+                                          Text(
+                                            '${bookDetails['topic'][index]['topic']}',
+                                            // 'Topic $index',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6
+                                                .copyWith(
+                                                  fontFamily: 'Headline',
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
-                      ],
+                      //
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  // bottom: 0,
+                  // left: 0,
+                  left: 8,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32.0),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: Icon(
+                        Icons.arrow_back,
+                        size: 32.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: bookDetails['topic'].length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: InkWell(
-                          onTap: () {
-                            model.navigateToTopicDetailsScreen(kitDetails,
-                                bookDetails, bookDetails['topic'][index]);
-                          },
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.wysiwyg,
-                              size: 48.0,
-                            ),
-                            title: Text(
-                              '${bookDetails['topic'][index]['topic']}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                    fontFamily: 'Headline',
-                                  ),
-                            ),
-                            subtitle: Row(
-                              children: [
-                                Container(
-                                  child: Icon(
-                                    Icons.videocam,
-                                    size: 16.0,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 4.0,
-                                ),
-                                Container(
-                                  child: Text(
-                                    '${int.parse(bookDetails['topic'][index]['videocount'])} ${int.parse(bookDetails['topic'][index]['videocount']) > 1 ? 'Videos' : 'Video'}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        .copyWith(
-                                          fontFamily: 'Body',
-                                        ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16.0,
-                                ),
-                                Container(
-                                  child: Icon(
-                                    Icons.insert_drive_file,
-                                    size: 16.0,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 4.0,
-                                ),
-                                Container(
-                                  child: Text(
-                                    '${int.parse(bookDetails['topic'][index]['pdfCount'])} ${int.parse(bookDetails['topic'][index]['pdfCount']) > 1 ? 'PDFs' : 'PDF'}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        .copyWith(
-                                          fontFamily: 'Body',
-                                        ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16.0,
-                                ),
-                                Container(
-                                  child: Icon(
-                                    Icons.web,
-                                    size: 16.0,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8.0,
-                                ),
-                                Container(
-                                  child: Text(
-                                    '${int.parse(bookDetails['topic'][index]['htmlcount'])} ${int.parse(bookDetails['topic'][index]['htmlcount']) > 1 ? 'Contents' : 'Content'}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        .copyWith(
-                                          fontFamily: 'Body',
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                ),
+                Positioned(
+                  top: 8,
+                  // bottom: 0,
+                  // left: 0,
+                  right: 8,
+                  child: InkWell(
+                    onTap: () async {
+                      await model.signOut();
                     },
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32.0),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: Icon(
+                        Icons.exit_to_app,
+                        size: 32.0,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                  //
-                ],
-              ),
+                ),
+              ],
             ),
             // body: Center(
             //   child: (model.bookList.length > 0)

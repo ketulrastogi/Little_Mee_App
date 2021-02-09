@@ -59,11 +59,13 @@ class UserProfileViewModel extends BaseViewModel {
     setBusy(true);
     await _authService.updateProfile(_appUser.userId, firstName, lastName,
         _email, _appUser.phoneNumber, birthdate);
-    _dialogService.showCustomDialog(
-      mainButtonTitle: 'Close',
-      title: 'Success',
-      description: 'Your Profile Updated Successfully',
-    );
+    _dialogService
+        .showCustomDialog(
+          mainButtonTitle: 'Close',
+          title: 'Success',
+          description: 'Your Profile Updated Successfully',
+        )
+        .then((value) => _navigationService.popRepeated(1));
     setAppUser();
     setBusy(false);
     // .then((value) => _navigationService.popRepeated(1));

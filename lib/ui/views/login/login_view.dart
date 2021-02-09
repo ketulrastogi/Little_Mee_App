@@ -18,238 +18,263 @@ class LoginView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             // backgroundColor: Colors.purple.shade50,
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: ListView(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: MediaQuery.of(context).size.width / 2,
-                      // color: Colors.purple.shade50,
-                      child: Center(
-                        // child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Icon(
-                        //         Icons.star,
-                        //         size: 64.0,
-                        //         color: Theme.of(context).primaryColor,
-                        //       ),
-                        //       Container(
-                        //         height: 64.0,
-                        //         margin: EdgeInsets.all(8.0),
-                        //         decoration: BoxDecoration(
-                        //           border: Border.all(
-                        //               width: 0.5, color: Colors.purple.shade500),
-                        //         ),
-                        //       ),
-                        //       SizedBox(width: 4.0),
-                        //       Text(
-                        //         'Little\nMee App',
-                        //         style: Theme.of(context)
-                        //             .textTheme
-                        //             .headline5
-                        //             .copyWith(
-                        //               // color: Theme.of(context).primaryColor,
-                        //               fontWeight: FontWeight.bold,
-                        //             ),
-                        //       ),
-                        //     ]),
-                        child: LogoWidgetView(),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16.0,
-                    ),
-                    SizedBox(
-                              height: 32.0,
+            body: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/background_pastel.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Form(
+                      key: _formKey,
+                      child: ListView(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.width / 2,
+                            // color: Colors.purple.shade50,
+                            child: Center(
+                              child: LogoWidgetView(),
                             ),
-                            Container(
-                              child: Text(
-                                'LOGIN',
-                                style: Theme.of(context)
+                          ),
+                          SizedBox(
+                            width: 16.0,
+                          ),
+                          SizedBox(
+                            height: 32.0,
+                          ),
+                          Container(
+                            child: Text(
+                              'LOGIN',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                    fontFamily: 'Headline',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          Container(
+                            child: TextFormField(
+                              controller: _phoneController,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                    fontFamily: 'Body',
+                                    color: Colors.grey.shade800,
+                                  ),
+                              decoration: InputDecoration(
+                                hintText: '9876543210',
+                                labelText: 'Phone Number',
+                                hintStyle: Theme.of(context)
                                     .textTheme
                                     .headline6
                                     .copyWith(
-                                      fontFamily: 'Headline',
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Body',
+                                      color: Colors.grey.shade800,
                                     ),
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontFamily: 'Body',
+                                      color: Colors.grey.shade800,
+                                    ),
+                                prefixText: '+ 91  ',
+                                filled: true,
+                                fillColor: Colors.white60,
+                                isDense: true,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                border: OutlineInputBorder(),
                               ),
+                              keyboardType: TextInputType.phone,
+                              onSaved: (String value) {
+                                model.setPhoneNumber(value);
+                              },
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Phone number can not be empty';
+                                } else if (value.length != 10) {
+                                  return 'Phone number must be of 10 digits';
+                                }
+
+                                return null;
+                              },
                             ),
-                            SizedBox(
-                              height: 16.0,
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Container(
+                            child: TextFormField(
+                              controller: _passwordController,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                    fontFamily: 'Body',
+                                    color: Colors.grey.shade800,
+                                  ),
+                              decoration: InputDecoration(
+                                hintText: '*******',
+                                labelText: 'Password',
+                                hintStyle: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontFamily: 'Body',
+                                      color: Colors.grey.shade800,
+                                    ),
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontFamily: 'Body',
+                                      color: Colors.grey.shade800,
+                                    ),
+                                filled: true,
+                                fillColor: Colors.white60,
+                                isDense: true,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                border: OutlineInputBorder(),
+                              ),
+                              obscureText: true,
+                              onSaved: (String value) {
+                                model.setPassword(value);
+                              },
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Password can not be empty';
+                                } else if (value.length < 6) {
+                                  return 'Password must be minimum 6 characters';
+                                }
+
+                                return null;
+                              },
                             ),
-                            Container(
-                              child: TextFormField(
-                                controller: _phoneController,
+                          ),
+                          SizedBox(
+                            height: 12.0,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              print('ForgotPassword Linked Tapped');
+                              model.navigateToForgotPasswordView();
+                            },
+                            child: Container(
+                              child: Text(
+                                'Forgot Password?',
+                                textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
                                     .subtitle1
                                     .copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
+                                      fontFamily: 'Body',
+                                      color: Colors.black,
+                                      // fontSize: 18.0,
                                     ),
-                                decoration: InputDecoration(
-                                  hintText: '9876543210',
-                                  labelText: 'Phone Number',
-                                  labelStyle: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                        fontFamily: 'Body',
-                                      ),
-                                  prefixText: '+ 91  ',
-                                  filled: true,
-                                  isDense: true,
-                                ),
-                                keyboardType: TextInputType.phone,
-                                onSaved: (String value) {
-                                  model.setPhoneNumber(value);
-                                },
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return 'Phone number can not be empty';
-                                  } else if (value.length != 10) {
-                                    return 'Phone number must be of 10 digits';
-                                  }
-
-                                  return null;
-                                },
                               ),
                             ),
-                            SizedBox(
-                              height: 8.0,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 32.0),
+                            child: MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 16.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              color: Theme.of(context).primaryColor,
+                              child: (model.isBusy)
+                                  ? Container(
+                                      height: 18.0,
+                                      width: 18.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                Colors.white),
+                                      ),
+                                    )
+                                  : Text(
+                                      'LOGIN',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .button
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Body',
+                                            // color: Colors.white,
+                                            fontSize: 18.0,
+                                          ),
+                                    ),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  _formKey.currentState.save();
+                                  model.loginUser();
+                                }
+                              },
                             ),
-                            Container(
-                              child: TextFormField(
-                                controller: _passwordController,
+                          ),
+                          SizedBox(
+                            height: 24.0,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              print('SignUp Linked Tapped');
+                              model.navigateToRegisterView();
+                            },
+                            child: Container(
+                              child: Text(
+                                'Don\'t have an account? Sign Up',
+                                textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
                                     .subtitle1
                                     .copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
+                                      fontFamily: 'Body',
+                                      color: Colors.black,
+                                      // fontSize: 18.0,
                                     ),
-                                decoration: InputDecoration(
-                                  hintText: '*******',
-                                  labelText: 'Password',
-                                  labelStyle: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                        fontFamily: 'Body',
-                                      ),
-                                  filled: true,
-                                  isDense: true,
-                                ),
-                                obscureText: true,
-                                onSaved: (String value) {
-                                  model.setPassword(value);
-                                },
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return 'Password can not be empty';
-                                  } else if (value.length < 6) {
-                                    return 'Password must be minimum 6 characters';
-                                  }
-
-                                  return null;
-                                },
                               ),
                             ),
-                            SizedBox(
-                              height: 12.0,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print('ForgotPassword Linked Tapped');
-                                model.navigateToForgotPasswordView();
-                              },
-                              child: Container(
-                                child: Text(
-                                  'Forgot Password?',
-                                  textAlign: TextAlign.right,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1
-                                      .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Body',
-                                        // color: Theme.of(context).primaryColor,
-                                        // fontSize: 18.0,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.0,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 32.0),
-                              child: MaterialButton(
-                                padding: EdgeInsets.symmetric(vertical: 12.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(32.0)),
-                                color: Theme.of(context).primaryColor,
-                                child: (model.isBusy)
-                                    ? Container(
-                                        height: 18.0,
-                                        width: 18.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                  Colors.white),
-                                        ),
-                                      )
-                                    : Text(
-                                        'LOGIN',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Body',
-                                              // color: Colors.white,
-                                              // fontSize: 18.0,
-                                            ),
-                                      ),
-                                onPressed: () {
-                                  if (_formKey.currentState.validate()) {
-                                    _formKey.currentState.save();
-                                    model.loginUser();
-                                  }
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: 24.0,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print('SignUp Linked Tapped');
-                                model.navigateToRegisterView();
-                              },
-                              child: Container(
-                                child: Text(
-                                  'Don\'t have an account? Sign Up',
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1
-                                      .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Body',
-                                        // color: Theme.of(context).primaryColor,
-                                        // fontSize: 18.0,
-                                      ),
-                                ),
-                              ),
-                            ),
-                  ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         );

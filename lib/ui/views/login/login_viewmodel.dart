@@ -108,7 +108,7 @@ class LoginViewModel extends BaseViewModel {
     } else {
       Map<String, dynamic> userProfile = await _authService.getUserProfile();
       if (userProfile != null && userProfile['mobile'] != null) {
-        _navigationService.clearStackAndShow(Routes.kitRouterScreenViewRoute);
+        _navigationService.clearStackAndShow(Routes.rootViewRoute);
       } else {
         _navigationService.clearStackAndShow(Routes.loginViewRoute);
       }
