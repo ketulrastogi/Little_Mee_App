@@ -43,7 +43,7 @@ class OtpView extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Image.asset(
-                    'assets/background_pastel.png',
+                    'assets/login_background.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -59,8 +59,8 @@ class OtpView extends StatelessWidget {
                         height: MediaQuery.of(context).size.width / 2,
                         // color: Colors.purple.shade50,
                         child: Center(
-                          child: LogoWidgetView(),
-                        ),
+                            // child: LogoWidgetView(),
+                            ),
                       ),
                       SizedBox(
                         width: 16.0,
@@ -160,7 +160,7 @@ class OtpView extends StatelessWidget {
                                             .button
                                             .copyWith(
                                               fontWeight: FontWeight.bold,
-                                              // color: Colors.white,
+                                              color: Colors.white,
                                               fontSize: 18.0,
                                               fontFamily: 'Body',
                                             ),

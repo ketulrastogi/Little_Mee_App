@@ -108,119 +108,119 @@ class BookDetailsScreenView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 150.0,
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Text(
-                                      'Description',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          .copyWith(
-                                            fontFamily: 'Headline',
-                                            color: Colors.black,
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                      // width: 180.0,
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Text(
-                                        '${bookDetails['description']}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle1
-                                            .copyWith(
-                                              fontFamily: 'Body',
-                                              color: Colors.grey.shade800,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // Container(
+                            //   child: Row(
+                            //     children: [
+                            //       Container(
+                            //         width: 150.0,
+                            //         padding: EdgeInsets.all(16.0),
+                            //         child: Text(
+                            //           'Description',
+                            //           style: Theme.of(context)
+                            //               .textTheme
+                            //               .headline6
+                            //               .copyWith(
+                            //                 fontFamily: 'Headline',
+                            //                 color: Colors.black,
+                            //               ),
+                            //         ),
+                            //       ),
+                            //       Expanded(
+                            //         child: Container(
+                            //           // width: 180.0,
+                            //           padding: EdgeInsets.all(16.0),
+                            //           child: Text(
+                            //             '${bookDetails['description']}',
+                            //             style: Theme.of(context)
+                            //                 .textTheme
+                            //                 .subtitle1
+                            //                 .copyWith(
+                            //                   fontFamily: 'Body',
+                            //                   color: Colors.grey.shade800,
+                            //                 ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
                       SizedBox(
                         height: 16.0,
                       ),
-                      if (bookDetails['worksheet'].length > 0)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'Worksheets',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6
-                                    .copyWith(
-                                      fontFamily: 'Headline',
-                                      color: Colors.black,
-                                    ),
-                              ),
-                            ),
-                            Container(
-                              height: 128.0,
-                              child: LiveList(
-                                padding: EdgeInsets.all(16.0),
-                                showItemInterval: Duration(milliseconds: 150),
-                                showItemDuration: Duration(milliseconds: 350),
-                                reAnimateOnVisibility: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: bookDetails['worksheet'].length,
-                                itemBuilder: (
-                                  context,
-                                  index,
-                                  Animation<double> animation,
-                                ) {
-                                  return FadeTransition(
-                                    opacity: Tween<double>(
-                                      begin: 0,
-                                      end: 1,
-                                    ).animate(animation),
-                                    child: SlideTransition(
-                                      position: Tween<Offset>(
-                                        begin: Offset(0, -0.1),
-                                        end: Offset.zero,
-                                      ).animate(animation),
-                                      child: Card(
-                                        color: getBackgroundColor(index),
-                                        child: InkWell(
-                                          onTap: () {
-                                            model
-                                                .navigateToDocumentViewerScreen(
-                                                    kitDetails['name'],
-                                                    bookDetails['worksheet']
-                                                        [index]['worksheet']);
-                                          },
-                                          child: Container(
-                                            width: 128.0,
-                                            // color: Colors.amber,
-                                            child: Icon(
-                                              Icons.insert_drive_file,
-                                              size: 48.0,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
+                      // if (bookDetails['worksheet'].length > 0)
+                      //   Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //     children: [
+                      //       Container(
+                      //         padding: EdgeInsets.all(16.0),
+                      //         child: Text(
+                      //           'Worksheets',
+                      //           style: Theme.of(context)
+                      //               .textTheme
+                      //               .headline6
+                      //               .copyWith(
+                      //                 fontFamily: 'Headline',
+                      //                 color: Colors.black,
+                      //               ),
+                      //         ),
+                      //       ),
+                      //       Container(
+                      //         height: 128.0,
+                      //         child: LiveList(
+                      //           padding: EdgeInsets.all(16.0),
+                      //           showItemInterval: Duration(milliseconds: 150),
+                      //           showItemDuration: Duration(milliseconds: 350),
+                      //           reAnimateOnVisibility: true,
+                      //           scrollDirection: Axis.horizontal,
+                      //           itemCount: bookDetails['worksheet'].length,
+                      //           itemBuilder: (
+                      //             context,
+                      //             index,
+                      //             Animation<double> animation,
+                      //           ) {
+                      //             return FadeTransition(
+                      //               opacity: Tween<double>(
+                      //                 begin: 0,
+                      //                 end: 1,
+                      //               ).animate(animation),
+                      //               child: SlideTransition(
+                      //                 position: Tween<Offset>(
+                      //                   begin: Offset(0, -0.1),
+                      //                   end: Offset.zero,
+                      //                 ).animate(animation),
+                      //                 child: Card(
+                      //                   color: getBackgroundColor(index),
+                      //                   child: InkWell(
+                      //                     onTap: () {
+                      //                       model
+                      //                           .navigateToDocumentViewerScreen(
+                      //                               kitDetails['name'],
+                      //                               bookDetails['worksheet']
+                      //                                   [index]['worksheet']);
+                      //                     },
+                      //                     child: Container(
+                      //                       width: 128.0,
+                      //                       // color: Colors.amber,
+                      //                       child: Icon(
+                      //                         Icons.insert_drive_file,
+                      //                         size: 48.0,
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             );
+                      //           },
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // SizedBox(
+                      //   height: 24.0,
+                      // ),
                       if (bookDetails['topic'].length > 0)
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),

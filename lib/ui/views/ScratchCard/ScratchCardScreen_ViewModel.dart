@@ -86,7 +86,8 @@ class ScratchCardScreenViewModel extends BaseViewModel {
             .showCustomDialog(
           mainButtonTitle: 'Close',
           title: 'Success',
-          description: 'Scratch Card is redeemed succesfully.',
+          description:
+              'Your user code is redeemed successfully.\nHappy learning !',
         )
             .then((value) {
           _navigationService.clearStackAndShow(Routes.homeViewRoute);

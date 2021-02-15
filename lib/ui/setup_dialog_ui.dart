@@ -52,7 +52,7 @@ void setupDialogUi() {
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      // color: Colors.white,
                                     ),
                           ),
                     alignment: Alignment.center,

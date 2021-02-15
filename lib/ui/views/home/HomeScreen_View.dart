@@ -82,7 +82,7 @@ class HomeScreenView extends StatelessWidget {
                 ),
                 (model.userKitList.length > 0)
                     ? Positioned(
-                        top: 0,
+                        top: 56,
                         bottom: 0,
                         left: 0,
                         right: 0,
@@ -116,8 +116,8 @@ class HomeScreenView extends StatelessWidget {
                                           model.userKitList[index]);
                                     },
                                     child: Container(
-                                      height: 200.0,
-                                      // color: Colors.red,
+                                      height: 256.0,
+                                      // color: Colors.yellow,
                                       // padding: EdgeInsets.all(16.0),
                                       width: MediaQuery.of(context).size.width -
                                           32,
@@ -125,7 +125,7 @@ class HomeScreenView extends StatelessWidget {
                                         children: [
                                           Positioned(
                                             top: 0,
-                                            bottom: 0,
+                                            bottom: 56,
                                             left: 0,
                                             right: 0,
                                             child: SvgPicture.asset(
@@ -135,7 +135,7 @@ class HomeScreenView extends StatelessWidget {
                                             ),
                                           ),
                                           Positioned(
-                                            top: 40,
+                                            top: -16,
                                             bottom: 0,
                                             left: 0,
                                             right: 0,
@@ -148,6 +148,39 @@ class HomeScreenView extends StatelessWidget {
                                                     .headline5
                                                     .copyWith(
                                                       fontFamily: 'Headline',
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            bottom: 14,
+                                            left: 0,
+                                            right: 0,
+                                            child: ListTile(
+                                              leading: Container(
+                                                height: 56.0,
+                                                width: 56.0,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      getBackgroundColor(index),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                ),
+                                                child: Icon(
+                                                  Icons.folder_open,
+                                                  size: 32.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              title: Text(
+                                                'Click here for Enrichment worksheets.',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6
+                                                    .copyWith(
+                                                      fontFamily: 'body',
+                                                      color: kDarkBlack1Color,
                                                     ),
                                               ),
                                             ),

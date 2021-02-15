@@ -32,19 +32,19 @@ class ScratchCardScreenView extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Image.asset(
-                    'assets/background.jpg',
+                    'assets/login_background.jpg',
                     fit: BoxFit.fill,
                   ),
                 ),
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.lightBlue.withOpacity(0.2),
-                  ),
-                ),
+                // Positioned(
+                //   top: 0,
+                //   bottom: 0,
+                //   left: 0,
+                //   right: 0,
+                //   child: Container(
+                //     color: Colors.lightBlue.withOpacity(0.2),
+                //   ),
+                // ),
                 Positioned(
                   top: 0,
                   bottom: 0,
@@ -64,7 +64,7 @@ class ScratchCardScreenView extends StatelessWidget {
                               Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  'Enter Seven Digit Scratch Card',
+                                  'Enter the user code given on the instruction manual',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6
@@ -90,7 +90,7 @@ class ScratchCardScreenView extends StatelessWidget {
                                         color: Colors.grey.shade800,
                                       ),
                                   decoration: InputDecoration(
-                                    hintText: 'Scratch Card',
+                                    hintText: 'User Code',
                                     // labelText: 'Scratch Card',
                                     hintStyle: Theme.of(context)
                                         .textTheme
@@ -118,9 +118,9 @@ class ScratchCardScreenView extends StatelessWidget {
                                   },
                                   validator: (String value) {
                                     if (value.isEmpty) {
-                                      return 'Scratch Card Code can not be empty';
+                                      return 'User code can not be empty';
                                     } else if (value.length < 7) {
-                                      return 'Scratch Card Code must be of 7 digits.';
+                                      return 'User code must be of 7 digits.';
                                     }
 
                                     return null;

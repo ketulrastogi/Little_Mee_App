@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         primaryColorDark: Colors.lightBlue,
         // accentColor: Colors.orange,
         // primarySwatch: Colors.purple,
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         textTheme: TextTheme(
           headline6: TextStyle(
             fontFamily: 'Headline',

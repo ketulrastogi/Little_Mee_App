@@ -76,7 +76,7 @@ class TopicDetailsScreenView extends StatelessWidget {
                                 Container(
                                   height: 150.0,
                                   width: 150.0,
-                                  padding: EdgeInsets.all(16.0),
+                                  // padding: EdgeInsets.all(16.0),
                                   child: Icon(
                                     Icons.wysiwyg,
                                     size: 64.0,
@@ -85,60 +85,18 @@ class TopicDetailsScreenView extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          child: Text(
-                                            '${topicDetails != null ? topicDetails['topic'] : 'Topic Name'}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline5
-                                                .copyWith(
-                                                  fontFamily: 'Headline',
-                                                  color: Colors.black,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 16.0,
-                                        ),
-                                        Container(
-                                          width: 150.0,
-                                          // padding: EdgeInsets.all(16.0),
-                                          child: Text(
-                                            'Description',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6
-                                                .copyWith(
-                                                  fontFamily: 'Headline',
-                                                  color: Colors.black,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 8.0,
-                                        ),
-                                        Container(
-                                          // width: 180.0,
-                                          // padding: EdgeInsets.all(16.0),
-                                          child: Text(
-                                            '${topicDetails != null ? topicDetails['topic'] : 'Topic Description'}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle1
-                                                .copyWith(
-                                                  fontFamily: 'Body',
-                                                  color: Colors.grey.shade800,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
+                                    // padding: EdgeInsets.all(16.0),
+                                    child: Container(
+                                      child: Text(
+                                        '${topicDetails != null ? topicDetails['topic'] : 'Topic Name'}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            .copyWith(
+                                              fontFamily: 'Headline',
+                                              color: Colors.black,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ),

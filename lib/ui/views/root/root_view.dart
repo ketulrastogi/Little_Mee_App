@@ -23,22 +23,22 @@ class RootView extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Image.asset(
-                    'assets/background_pastel.png',
+                    'assets/splash_screen.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Container(
-                      width: 300.0,
-                      child: Image.asset('assets/logo.png'),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   top: 0,
+                //   bottom: 0,
+                //   left: 0,
+                //   right: 0,
+                //   child: Center(
+                //     child: Container(
+                //       width: 300.0,
+                //       child: Image.asset('assets/logo.png'),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

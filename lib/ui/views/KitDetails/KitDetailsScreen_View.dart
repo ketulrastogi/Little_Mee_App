@@ -54,13 +54,42 @@ class KitDetailsScreenView extends StatelessWidget {
                     color: Colors.lightBlue.withOpacity(0.2),
                   ),
                 ),
+                Positioned(
+                  top: 64,
+                  // bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Center(
+                        child: Text(
+                          'Select the book you want to view',
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontFamily: 'Headline',
+                                color: kDarkBlack1Color,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 (model.bookList.length > 0)
                     ? Positioned(
-                        top: 0,
+                        top: 80,
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        child: LiveList(
+                        child: LiveGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                          ),
                           padding: EdgeInsets.all(16.0),
                           showItemInterval: Duration(milliseconds: 150),
                           showItemDuration: Duration(milliseconds: 350),
