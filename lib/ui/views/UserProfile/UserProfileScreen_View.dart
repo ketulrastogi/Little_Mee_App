@@ -43,22 +43,6 @@ class _UserProfileViewState extends State<UserProfileView> {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            // appBar: AppBar(
-            //   title: Text(
-            //     'Little Mee',
-            //     style: Theme.of(context).textTheme.headline6.copyWith(
-            //           fontFamily: 'Headline',
-            //         ),
-            //   ),
-            //   // titleSpacing: 4.0,
-            //   centerTitle: true,
-            //   iconTheme: IconThemeData(
-            //     size: 40.0,
-            //     color: Colors.white,
-            //   ),
-            //   // automaticallyImplyLeading: false,
-            //   backgroundColor: Colors.grey.shade900,
-            // ),
             body: Form(
               key: _formKey,
               child: Stack(
@@ -74,7 +58,39 @@ class _UserProfileViewState extends State<UserProfileView> {
                     ),
                   ),
                   Positioned(
-                    top: 0,
+                    top: 16,
+                    // bottom: 0,
+                    // left: 0,
+                    right: 16,
+                    child: SizedBox(
+                      width: 200.0,
+                      child: RaisedButton(
+                        color: Theme.of(context).primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
+                        padding: EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Add New Scratch Card',
+                              style:
+                                  Theme.of(context).textTheme.button.copyWith(
+                                        color: Colors.white,
+                                      ),
+                            ),
+                          ],
+                        ),
+                        onPressed: model.navigateToScratchCardScreen,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 64,
                     bottom: 0,
                     left: 0,
                     right: 0,

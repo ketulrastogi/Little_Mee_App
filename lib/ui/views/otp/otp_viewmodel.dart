@@ -116,16 +116,15 @@ class OtpViewModel extends BaseViewModel {
           );
           if (!loginResponse['result']) {
             _snackbarService.showSnackbar(
-                message: 'An error occured while register.');
+                message: '${loginResponse['message']}.');
           } else {
-            _navigationService.clearStackAndShow(Routes.homeViewRoute);
+            _navigationService.clearStackAndShow(Routes.rootViewRoute);
           }
           return;
         });
       }
     } catch (e) {
-      _snackbarService.showSnackbar(
-          message: 'An error occured while register.');
+      _snackbarService.showSnackbar(message: '$e.');
     }
   }
 }

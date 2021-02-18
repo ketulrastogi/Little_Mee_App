@@ -36,52 +36,62 @@ class ScratchCardScreenView extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                // Positioned(
-                //   top: 0,
-                //   bottom: 0,
-                //   left: 0,
-                //   right: 0,
-                //   child: Container(
-                //     color: Colors.lightBlue.withOpacity(0.2),
-                //   ),
-                // ),
                 Positioned(
-                  top: 0,
+                  top: -24,
+                  // bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/logo.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Positioned(
+                  top: 200,
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Center(
-                    child: SizedBox(
-                      // height: MediaQuery.of(context).size.width / 2,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: SingleChildScrollView(
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Enter the user code given on the instruction manual',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                        // fontWeight: FontWeight.bold,
-                                        // fontSize: 18.0,
-                                        color: Colors.black,
-                                      ),
-                                ),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Enter the user code given on the instruction manual',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      // fontWeight: FontWeight.bold,
+                                      // fontSize: 18.0,
+                                      color: Colors.black,
+                                    ),
                               ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              Container(
-                                child: TextFormField(
-                                  controller: _scratchCardController,
-                                  style: Theme.of(context)
+                            ),
+                            SizedBox(
+                              height: 16.0,
+                            ),
+                            Container(
+                              child: TextFormField(
+                                controller: _scratchCardController,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0,
+                                      color: Colors.grey.shade800,
+                                    ),
+                                decoration: InputDecoration(
+                                  hintText: 'User Code',
+                                  // labelText: 'Scratch Card',
+                                  hintStyle: Theme.of(context)
                                       .textTheme
                                       .subtitle1
                                       .copyWith(
@@ -89,121 +99,131 @@ class ScratchCardScreenView extends StatelessWidget {
                                         fontSize: 18.0,
                                         color: Colors.grey.shade800,
                                       ),
-                                  decoration: InputDecoration(
-                                    hintText: 'User Code',
-                                    // labelText: 'Scratch Card',
-                                    hintStyle: Theme.of(context)
-                                        .textTheme
-                                        .subtitle1
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                          color: Colors.grey.shade800,
-                                        ),
-                                    filled: true,
-                                    fillColor: Colors.white60,
-                                    isDense: true,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Theme.of(context).primaryColor,
-                                        width: 2.0,
-                                      ),
+                                  filled: true,
+                                  fillColor: Colors.white60,
+                                  isDense: true,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2.0,
                                     ),
-                                    border: OutlineInputBorder(),
                                   ),
-                                  obscureText: true,
-                                  onSaved: (String value) {
-                                    model.setScratchCardNumber(
-                                        value.toUpperCase());
-                                  },
-                                  validator: (String value) {
-                                    if (value.isEmpty) {
-                                      return 'User code can not be empty';
-                                    } else if (value.length < 7) {
-                                      return 'User code must be of 7 digits.';
-                                    }
+                                  border: OutlineInputBorder(),
+                                ),
+                                obscureText: true,
+                                onSaved: (String value) {
+                                  model.setScratchCardNumber(
+                                      value.toUpperCase());
+                                },
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'User code can not be empty';
+                                  } else if (value.length < 7) {
+                                    return 'User code must be of 7 digits.';
+                                  }
 
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                ),
+                                  return null;
+                                },
+                                keyboardType: TextInputType.text,
                               ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 32.0),
-                                child: MaterialButton(
-                                  padding: EdgeInsets.symmetric(vertical: 12.0),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(32.0)),
-                                  color: Colors.blue,
-                                  child: (model.isBusy)
-                                      ? Container(
-                                          height: 18.0,
-                                          width: 18.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                                    Colors.white),
-                                          ),
-                                        )
-                                      : Text(
-                                          'SUBMIT',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .button
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                                fontSize: 18.0,
-                                              ),
+                            ),
+                            SizedBox(
+                              height: 16.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 32.0),
+                              child: MaterialButton(
+                                padding: EdgeInsets.symmetric(vertical: 12.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32.0)),
+                                color: Colors.blue,
+                                child: (model.isBusy)
+                                    ? Container(
+                                        height: 18.0,
+                                        width: 18.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                  Colors.white),
                                         ),
-                                  onPressed: () {
-                                    if (_formKey.currentState.validate()) {
-                                      _formKey.currentState.save();
-                                      model.checkAndValidateScratchCard();
-                                    }
-                                  },
+                                      )
+                                    : Text(
+                                        'SUBMIT',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 18.0,
+                                            ),
+                                      ),
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    _formKey.currentState.save();
+                                    model.checkAndValidateScratchCard();
+                                  }
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: 16.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 32.0),
+                              child: MaterialButton(
+                                padding: EdgeInsets.symmetric(vertical: 12.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32.0),
+                                  side: BorderSide(
+                                      color: Theme.of(context).primaryColor),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 32.0),
-                                child: MaterialButton(
-                                  padding: EdgeInsets.symmetric(vertical: 12.0),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(32.0),
-                                    side: BorderSide(
-                                        color: Theme.of(context).primaryColor),
-                                  ),
-                                  elevation: 0,
-                                  color: Colors.white,
-                                  child: Text(
-                                    'CANCEL',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .button
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 18.0,
-                                        ),
-                                  ),
-                                  onPressed: () {
-                                    // if (_formKey.currentState.validate()) {
-                                    // _formKey.currentState.save();
-                                    model.exitTheApp();
-                                    // }
-                                  },
+                                elevation: 0,
+                                color: Colors.white,
+                                child: Text(
+                                  'CANCEL',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 18.0,
+                                      ),
                                 ),
+                                onPressed: () {
+                                  // if (_formKey.currentState.validate()) {
+                                  // _formKey.currentState.save();
+                                  model.exitTheApp();
+                                  // }
+                                },
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  // bottom: 0,
+                  // left: 0,
+                  right: 8,
+                  child: InkWell(
+                    onTap: () async {
+                      await model.signOut();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32.0),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: Icon(
+                        Icons.exit_to_app,
+                        size: 32.0,
+                        color: Colors.white,
                       ),
                     ),
                   ),

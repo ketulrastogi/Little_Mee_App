@@ -40,7 +40,17 @@ class RegisterView extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 0,
+                    top: -24,
+                    // bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset(
+                      'assets/logo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Positioned(
+                    top: 184,
                     bottom: 0,
                     left: 0,
                     right: 0,
@@ -48,20 +58,20 @@ class RegisterView extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2,
-                          height: MediaQuery.of(context).size.width / 2,
-                          // color: Colors.purple.shade50,
-                          child: Center(
-                              // child: LogoWidgetView(),
-                              ),
-                        ),
-                        SizedBox(
-                          width: 16.0,
-                        ),
-                        SizedBox(
-                          height: 32.0,
-                        ),
+                        // Container(
+                        //   width: MediaQuery.of(context).size.width / 2,
+                        //   height: MediaQuery.of(context).size.width / 2,
+                        //   // color: Colors.purple.shade50,
+                        //   child: Center(
+                        //       // child: LogoWidgetView(),
+                        //       ),
+                        // ),
+                        // SizedBox(
+                        //   width: 16.0,
+                        // ),
+                        // SizedBox(
+                        //   height: 32.0,
+                        // ),
                         Container(
                           child: Text(
                             'REGISTER',

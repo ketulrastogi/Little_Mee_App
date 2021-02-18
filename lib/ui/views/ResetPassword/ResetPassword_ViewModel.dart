@@ -39,24 +39,26 @@ class ResetPasswordViewModel extends BaseViewModel {
     if (_newPassword == _confirmPassword) {
       try {
         print('UserId: $_userId, Password: $_newPassword');
-        await _authService.resetPassword(_userId, _newPassword);
-        _dialogService
-            .showCustomDialog(
-          mainButtonTitle: 'Close',
-          title: 'Success',
-          description:
-              'Password is updated succesfully. Please login now to get started.',
-        )
-            .then((value) {
-          _navigationService.navigateTo(
-            Routes.loginViewRoute,
-          );
-          return;
-        });
+        Map<String, dynamic> response =
+            await _authService.resetPassword(_userId, _newPassword);
+        if (!response['result']) {
+          _snackbarService.showSnackbar(message: '${response['message']}');
+        } else {
+          _dialogService
+              .showCustomDialog(
+            mainButtonTitle: 'Close',
+            title: 'Success',
+            description: '${response['message']}',
+          )
+              .then((value) {
+            _navigationService.navigateTo(
+              Routes.loginViewRoute,
+            );
+            return;
+          });
+        }
       } catch (e) {
-        _snackbarService.showSnackbar(
-            message:
-                'An error occured while updating password. Please try again. $e');
+        _snackbarService.showSnackbar(message: '$e');
       }
     } else {
       _snackbarService.showSnackbar(

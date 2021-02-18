@@ -97,8 +97,7 @@ class ForgotOtpViewModel extends BaseViewModel {
         );
       }
     } catch (e) {
-      _snackbarService.showSnackbar(
-          message: 'An error occured while register.');
+      _snackbarService.showSnackbar(message: '$e.');
     }
   }
 }

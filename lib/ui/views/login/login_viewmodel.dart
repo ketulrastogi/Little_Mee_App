@@ -96,22 +96,25 @@ class LoginViewModel extends BaseViewModel {
 
   loginUser() async {
     setBusy(true);
-    Map<String, dynamic> response =
-        await _authService.loginUser(_phoneNumber, _password);
-    print('Phone number: $_phoneNumber, Password: $_password');
+    try {
+      Map<String, dynamic> response =
+          await _authService.loginUser(_phoneNumber, _password);
+      print('Phone number: $_phoneNumber, Password: $_password');
 
-    print('Response in LoginViewModel: [103] - $response');
+      print('Response in LoginViewModel: [103] - $response');
 
-    if (!response['result']) {
-      _snackbarService.showSnackbar(
-          message: 'Phone number or password is wrong. Please try again.');
-    } else {
-      Map<String, dynamic> userProfile = await _authService.getUserProfile();
-      if (userProfile != null && userProfile['mobile'] != null) {
-        _navigationService.clearStackAndShow(Routes.rootViewRoute);
+      if (!response['result']) {
+        _snackbarService.showSnackbar(message: '${response['message']}.');
       } else {
-        _navigationService.clearStackAndShow(Routes.loginViewRoute);
+        Map<String, dynamic> userProfile = await _authService.getUserProfile();
+        if (userProfile != null && userProfile['mobile'] != null) {
+          _navigationService.clearStackAndShow(Routes.rootViewRoute);
+        } else {
+          _navigationService.clearStackAndShow(Routes.loginViewRoute);
+        }
       }
+    } catch (e) {
+      _snackbarService.showSnackbar(message: '$e.');
     }
     setBusy(false);
   }

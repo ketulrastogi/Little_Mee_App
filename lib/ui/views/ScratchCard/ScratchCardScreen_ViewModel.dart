@@ -70,6 +70,11 @@ class ScratchCardScreenViewModel extends BaseViewModel {
     });
   }
 
+  signOut() async {
+    await _authService.signOut();
+    _navigationService.clearStackAndShow(Routes.loginViewRoute);
+  }
+
   checkAndValidateScratchCard() async {
     setBusy(true);
     try {
@@ -77,8 +82,7 @@ class ScratchCardScreenViewModel extends BaseViewModel {
           await _kitService.validateScratchCardNumber(_scratchCardNumber);
       setBusy(false);
       if (!response['result']) {
-        _snackbarService.showSnackbar(
-            message: 'You have not purchased any Kits. ${response['data']} ');
+        _snackbarService.showSnackbar(message: '${response['data']} ');
       } else {
         // _userKitList = [...response['data']];
         // notifyListeners();
@@ -95,8 +99,7 @@ class ScratchCardScreenViewModel extends BaseViewModel {
         });
       }
     } catch (e) {
-      _snackbarService.showSnackbar(
-          message: 'An error occured while getting kits you purchased. $e.');
+      _snackbarService.showSnackbar(message: '$e.');
     }
     setBusy(false);
   }

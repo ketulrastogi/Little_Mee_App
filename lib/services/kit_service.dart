@@ -72,7 +72,7 @@ class KitService {
     http.Response response = await http.post(
       "$baseAPIUrl/check_card",
       body: {
-        'id': data['id'],
+        'userid': data['id'],
         'cardno': scratchCardNumber,
       },
     );

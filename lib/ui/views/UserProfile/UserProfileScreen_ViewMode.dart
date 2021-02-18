@@ -10,6 +10,7 @@ class UserProfileViewModel extends BaseViewModel {
   final FirebaseAuthService _authService = locator<FirebaseAuthService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final DialogService _dialogService = locator<DialogService>();
+  final SnackbarService _snackbarService = locator<SnackbarService>();
   AppUser _appUser;
   String _firstName;
   String _lastName;
@@ -57,17 +58,25 @@ class UserProfileViewModel extends BaseViewModel {
 
   updateUserProfile() async {
     setBusy(true);
-    await _authService.updateProfile(_appUser.userId, firstName, lastName,
-        _email, _appUser.phoneNumber, birthdate);
-    _dialogService
-        .showCustomDialog(
-          mainButtonTitle: 'Close',
-          title: 'Success',
-          description: 'Your Profile Updated Successfully',
-        )
-        .then((value) => _navigationService.popRepeated(1));
-    setAppUser();
+    try {
+      await _authService.updateProfile(_appUser.userId, firstName, lastName,
+          _email, _appUser.phoneNumber, birthdate);
+      _dialogService
+          .showCustomDialog(
+            mainButtonTitle: 'Close',
+            title: 'Success',
+            description: 'Your Profile Updated Successfully',
+          )
+          .then((value) => _navigationService.popRepeated(1));
+      setAppUser();
+    } catch (e) {
+      _snackbarService.showSnackbar(message: '$e.');
+    }
     setBusy(false);
     // .then((value) => _navigationService.popRepeated(1));
+  }
+
+  navigateToScratchCardScreen() {
+    _navigationService.clearStackAndShow(Routes.scratchCardScreenViewRoute);
   }
 }
