@@ -18,6 +18,7 @@ class KitDetailsScreenViewModel extends BaseViewModel {
   Map<String, dynamic> get kitDetails => _kitDetails;
 
   getBooks(Map<String, dynamic> kitData) async {
+    setBusy(true);
     try {
       if (kitData != null) {
         _kitDetails = kitData;
@@ -47,6 +48,8 @@ class KitDetailsScreenViewModel extends BaseViewModel {
       _snackbarService.showSnackbar(
           message:
               'An error occured while getting books of kit you purchased. $e.');
+    } finally {
+      setBusy(false);
     }
   }
 

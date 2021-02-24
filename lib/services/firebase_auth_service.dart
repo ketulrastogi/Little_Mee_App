@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -36,7 +35,6 @@ class FirebaseAuthService with ReactiveServiceMixin {
     listenToReactiveValues([_verificationId]);
   }
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   AuthStatus authStatus;
   String get verificationId => _verificationId.value;
   User get user => _firebaseAuth.currentUser;
@@ -189,35 +187,6 @@ class FirebaseAuthService with ReactiveServiceMixin {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('user_profile', null);
     return await _firebaseAuth.signOut();
-  }
-
-  Future<AppUser> getCurrentUser() async {
-    AppUser _appUser = await _firestore
-        .collection('users')
-        .doc(user.uid)
-        .get()
-        .then((DocumentSnapshot ds) => AppUser.fromJson(ds.data()));
-    if (_appUser == null) {
-      return AppUser.fromJson({
-        'uid': user.uid,
-        'phoneNumber': user.phoneNumber,
-        'displayName': user.displayName,
-      });
-    } else {
-      return _appUser;
-    }
-  }
-
-  Future<void> saveUserProfile(
-      String displayName, String email, String birthdate) async {
-    await _firebaseAuth.currentUser.updateProfile(displayName: displayName);
-    return await _firestore.collection('users').doc(user.uid).set({
-      'displayName': displayName,
-      'phoneNumber': user.phoneNumber,
-      'email': email,
-      'birthdate': birthdate,
-      'userId': user.uid
-    }, SetOptions(merge: true));
   }
 
   Future<Map<String, dynamic>> loginUser(

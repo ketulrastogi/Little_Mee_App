@@ -17,46 +17,35 @@ class KitDetailsScreenView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            // appBar: AppBar(
-            //   title: Text(
-            //     '${(kitDetails != null && kitDetails.containsKey('name')) ? kitDetails['name'] : (model.kitDetails != null && model.kitDetails.containsKey('name')) ? model.kitDetails['name'] : 'Kit Name'}',
-            //     style: Theme.of(context).textTheme.headline6.copyWith(
-            //           fontFamily: 'Headline',
-            //         ),
-            //   ),
-            //   // titleSpacing: 4.0,
-            //   centerTitle: true,
-            //   iconTheme: IconThemeData(
-            //     size: 40.0,
-            //     color: Colors.white,
-            //   ),
-            //   // automaticallyImplyLeading: false,
-            //   backgroundColor: Colors.grey.shade900,
-            // ),
+            backgroundColor: Colors.white,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.startFloat,
+            floatingActionButton: Container(
+              height: 64.0,
+              width: 64.0,
+              margin: EdgeInsets.only(bottom: 8.0),
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(64.0),
+                color: Color(0xFFFF6D01),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    spreadRadius: 2.0,
+                    blurRadius: 4.0,
+                    offset: Offset(0.0, 4.0),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                'assets/images/enrichment_icon.png',
+                color: Colors.white,
+              ),
+            ),
             body: Stack(
               children: [
                 Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Image.asset(
-                    'assets/background.jpg',
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.lightBlue.withOpacity(0.2),
-                  ),
-                ),
-                Positioned(
-                  top: 64,
-                  // bottom: 0,
+                  top: 16,
                   left: 0,
                   right: 0,
                   child: InkWell(
@@ -64,165 +53,187 @@ class KitDetailsScreenView extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                        child: Text(
-                          'Select the book you want to view',
-                          style: Theme.of(context).textTheme.headline6.copyWith(
-                                fontFamily: 'Headline',
-                                color: kDarkBlack1Color,
-                              ),
-                        ),
+                      padding: EdgeInsets.symmetric(horizontal: 72.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 32,
+                        child: Image.network(kitDetails['image']),
                       ),
                     ),
                   ),
                 ),
-                (model.bookList.length > 0)
-                    ? Positioned(
-                        top: 80,
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: LiveGrid(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                          ),
-                          padding: EdgeInsets.all(16.0),
-                          showItemInterval: Duration(milliseconds: 150),
-                          showItemDuration: Duration(milliseconds: 350),
-                          reAnimateOnVisibility: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: model.bookList.length,
-                          itemBuilder: (
-                            context,
-                            index,
-                            Animation<double> animation,
-                          ) {
-                            return FadeTransition(
-                              opacity: Tween<double>(
-                                begin: 0,
-                                end: 1,
-                              ).animate(animation),
-                              child: SlideTransition(
-                                position: Tween<Offset>(
-                                  begin: Offset(0, -0.1),
-                                  end: Offset.zero,
-                                ).animate(animation),
-                                child: Padding(
-                                  padding: EdgeInsets.zero,
-                                  child: InkWell(
-                                    onTap: () {
-                                      model.navigateToBookDetailsScreen(
-                                          model.kitDetails,
-                                          model.bookList[index]);
-                                    },
-                                    child: Container(
-                                      height: 200.0,
-                                      // color: Colors.red,
-                                      // padding: EdgeInsets.all(16.0),
-                                      width: MediaQuery.of(context).size.width -
-                                          32,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            top: 0,
-                                            bottom: 0,
-                                            left: 0,
-                                            right: 0,
-                                            child: SvgPicture.asset(
-                                              'assets/cloud.svg',
-                                              fit: BoxFit.fill,
-                                              color: getBackgroundColor(index),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 40,
-                                            bottom: 0,
-                                            left: 0,
-                                            right: 0,
-                                            child: Center(
-                                              child: Text(
-                                                '${model.bookList[index]['book']}',
-                                                // 'Playgroup',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline5
-                                                    .copyWith(
-                                                      fontFamily: 'Headline',
+                (model.isBusy)
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Theme.of(context).primaryColor),
+                        ),
+                      )
+                    : (model.bookList.length > 0)
+                        ? Positioned(
+                            top: 112,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: LiveGrid(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                                childAspectRatio: 1.2,
+                              ),
+                              padding: EdgeInsets.only(
+                                  top: 16.0,
+                                  left: 16.0,
+                                  right: 16.0,
+                                  bottom: 112.0),
+                              showItemInterval: Duration(milliseconds: 150),
+                              showItemDuration: Duration(milliseconds: 350),
+                              reAnimateOnVisibility: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: model.bookList.length,
+                              itemBuilder: (
+                                context,
+                                index,
+                                Animation<double> animation,
+                              ) {
+                                return FadeTransition(
+                                  opacity: Tween<double>(
+                                    begin: 0,
+                                    end: 1,
+                                  ).animate(animation),
+                                  child: SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: Offset(0, -0.1),
+                                      end: Offset.zero,
+                                    ).animate(animation),
+                                    child: Padding(
+                                      padding: EdgeInsets.zero,
+                                      child: InkWell(
+                                        onTap: () {
+                                          model.navigateToBookDetailsScreen(
+                                              model.kitDetails,
+                                              model.bookList[index]);
+                                        },
+                                        child: Container(
+                                          alignment: (index % 2 == 0)
+                                              ? Alignment.centerLeft
+                                              : Alignment.centerRight,
+                                          child: SizedBox(
+                                            // height: 150.0,
+                                            // width: 300.0,
+                                            child: Stack(
+                                              children: [
+                                                Positioned(
+                                                  top: 0,
+                                                  bottom: 0,
+                                                  left: 0,
+                                                  right: 0,
+                                                  child: Container(
+                                                    // width: 300.0,
+                                                    // height: 100.0,
+                                                    // padding: EdgeInsets.symmetric(
+                                                    //     vertical: 32.0),
+                                                    child: Image.asset(
+                                                      'assets/images/cloud_big.png',
+                                                      fit: BoxFit.fill,
                                                     ),
-                                              ),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 0,
+                                                  bottom: 0,
+                                                  left: 0,
+                                                  right: 0,
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${model.bookList[index]['book']}',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline6
+                                                          .copyWith(
+                                                            fontFamily:
+                                                                'Headline',
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                );
+                              },
+                            ),
+                          )
+                        : Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child: Center(
+                              child: Text(
+                                'No books available.',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontFamily: 'Headline',
+                                    ),
                               ),
-                            );
-                          },
-                        ),
-                      )
-                    : Positioned(
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).primaryColor),
+                            ),
                           ),
-                        ),
-                      ),
                 Positioned(
-                  top: 8,
-                  // bottom: 0,
-                  // left: 0,
+                  top: 16,
                   left: 8,
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       Navigator.of(context).pop();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(16.0),
+                      height: 64.0,
+                      width: 64.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32.0),
-                        color: Theme.of(context).primaryColor,
                       ),
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 32.0,
-                        color: Colors.white,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(32.0),
+                        child: Image.asset('assets/images/back_arrow.png'),
                       ),
                     ),
                   ),
                 ),
                 Positioned(
                   top: 8,
-                  // bottom: 0,
-                  // left: 0,
                   right: 8,
                   child: InkWell(
                     onTap: () async {
                       await model.signOut();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(16.0),
+                      height: 64.0,
+                      width: 64.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32.0),
-                        color: Theme.of(context).primaryColor,
                       ),
                       child: Icon(
-                        Icons.exit_to_app,
-                        size: 32.0,
-                        color: Colors.white,
+                        Icons.power_settings_new,
+                        size: 48.0,
+                        color: Color(0xFF6D6E72),
                       ),
                     ),
                   ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset('assets/images/footer.png'),
                 ),
               ],
             ),

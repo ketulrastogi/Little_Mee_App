@@ -27,6 +27,7 @@ class HomeScreenViewModel extends BaseViewModel {
   List<Map<String, dynamic>> get userKitList => _userKitList;
 
   getUserKit() async {
+    setBusy(true);
     try {
       _userProfile = await _authService.getUserProfile();
 
@@ -49,6 +50,8 @@ class HomeScreenViewModel extends BaseViewModel {
     } catch (e) {
       _snackbarService.showSnackbar(
           message: 'An error occured while getting kits you purchased. $e.');
+    } finally {
+      setBusy(false);
     }
   }
 

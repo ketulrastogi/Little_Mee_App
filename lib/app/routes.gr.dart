@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 
 import '../ui/views/BookDetails/BookDetailsScreen_View.dart';
 import '../ui/views/Books/BooksScreen_View.dart';
-import '../ui/views/Dashboard/DashboardScreen_View.dart';
 import '../ui/views/DocumentViewer/DocumentViewerScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
 import '../ui/views/ForgotPassword/ForgotPassword_View.dart';
@@ -39,7 +38,6 @@ class Routes {
   static const String userProfileViewRoute = '/user-profile-view';
   static const String homeViewRoute = '/home-screen-view';
   static const String scratchCardScreenViewRoute = '/scratch-card-screen-view';
-  static const String dashboardScreenViewRoute = '/dashboard-screen-view';
   static const String kitRouterScreenViewRoute = '/kit-router-screen-view';
   static const String booksScreenViewRoute = '/books-screen-view';
   static const String kitDetailsScreenViewRoute = '/kit-details-screen-view';
@@ -60,7 +58,6 @@ class Routes {
     userProfileViewRoute,
     homeViewRoute,
     scratchCardScreenViewRoute,
-    dashboardScreenViewRoute,
     kitRouterScreenViewRoute,
     booksScreenViewRoute,
     kitDetailsScreenViewRoute,
@@ -85,7 +82,6 @@ class Router extends RouterBase {
     RouteDef(Routes.userProfileViewRoute, page: UserProfileView),
     RouteDef(Routes.homeViewRoute, page: HomeScreenView),
     RouteDef(Routes.scratchCardScreenViewRoute, page: ScratchCardScreenView),
-    RouteDef(Routes.dashboardScreenViewRoute, page: DashboardScreenView),
     RouteDef(Routes.kitRouterScreenViewRoute, page: KitRouterScreenView),
     RouteDef(Routes.booksScreenViewRoute, page: BooksScreenView),
     RouteDef(Routes.kitDetailsScreenViewRoute, page: KitDetailsScreenView),
@@ -177,12 +173,6 @@ class Router extends RouterBase {
     ScratchCardScreenView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ScratchCardScreenView(),
-        settings: data,
-      );
-    },
-    DashboardScreenView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => DashboardScreenView(),
         settings: data,
       );
     },

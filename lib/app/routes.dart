@@ -64,10 +64,6 @@ import 'package:little_mee/ui/views/TopicDetails/TopicDetailsScreen_View.dart';
       name: 'scratchCardScreenViewRoute',
     ),
     MaterialRoute(
-      page: DashboardScreenView,
-      name: 'dashboardScreenViewRoute',
-    ),
-    MaterialRoute(
       page: KitRouterScreenView,
       name: 'kitRouterScreenViewRoute',
     ),

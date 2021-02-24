@@ -43,6 +43,14 @@
 	<false/>
 	<key>UIStatusBarHidden</key>
 	<true/>
-
+	<key>io.flutter.embedded_views_preview</key>
+	<key>NSAppTransportSecurity</key>
+		<dict>
+    		<key>NSAllowsArbitraryLoads</key>
+    		<true/>
+    		<key>NSAllowsArbitraryLoadsInWebContent</key>
+    		<true/>
+		</dict>
+<true/>
 </dict>
 </plist>
