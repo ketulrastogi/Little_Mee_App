@@ -5,6 +5,7 @@ import 'package:little_mee/ui/views/TopicDetails/TopicDetailsScreen_ViewModel.da
 import 'package:flutter/services.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:little_mee/constants/const.dart';
+import 'package:little_mee/ui/widgets/HamburgerMenu/HamburgerMenuWidget_View.dart';
 
 class TopicDetailsScreenView extends StatelessWidget {
   final Map<String, dynamic> kitDetails;
@@ -22,6 +23,8 @@ class TopicDetailsScreenView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: HamburgerMenuWidgetView(),
             body: Stack(
               children: [
                 Positioned(
@@ -132,7 +135,7 @@ class TopicDetailsScreenView extends StatelessWidget {
                                           width: 330.0,
                                           child: VideoContentCardWidgetView(
                                             // videoUrl: 'Ts7JlS3M2S4',
-                                            videoUrl:
+                                            videoId:
                                                 '${topicDetails['video_array'][index]['video_url_id']}',
                                           ),
                                         ),
@@ -334,27 +337,6 @@ class TopicDetailsScreenView extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(32.0),
                         child: Image.asset('assets/images/back_arrow.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: InkWell(
-                    onTap: () async {
-                      await model.signOut();
-                    },
-                    child: Container(
-                      height: 64.0,
-                      width: 64.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Icon(
-                        Icons.power_settings_new,
-                        size: 48.0,
-                        color: Color(0xFF6D6E72),
                       ),
                     ),
                   ),

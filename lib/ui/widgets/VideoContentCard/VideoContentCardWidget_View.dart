@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/widgets/VideoContentCard/VideoContentCardWidget_ViewModel.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoContentCardWidgetView extends StatefulWidget {
-  final String videoUrl;
+  final String videoId;
 
-  const VideoContentCardWidgetView({Key key, this.videoUrl}) : super(key: key);
+  const VideoContentCardWidgetView({Key key, this.videoId}) : super(key: key);
   @override
   _VideoContentCardWidgetViewState createState() =>
       _VideoContentCardWidgetViewState();
@@ -57,7 +56,7 @@ class _VideoContentCardWidgetViewState
     // );
 
     _controller = YoutubePlayerController(
-      initialVideoId: '${widget.videoUrl}',
+      initialVideoId: '${widget.videoId}',
       params: YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,

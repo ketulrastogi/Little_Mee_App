@@ -43,66 +43,29 @@ class _UserProfileViewState extends State<UserProfileView> {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
+            backgroundColor: Colors.white,
             body: Form(
               key: _formKey,
               child: Stack(
                 children: [
                   Positioned(
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Image.asset(
-                      'assets/background.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Positioned(
                     top: 16,
                     // bottom: 0,
-                    // left: 0,
-                    right: 16,
-                    child: SizedBox(
-                      width: 200.0,
-                      child: RaisedButton(
-                        color: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32.0),
-                        ),
-                        padding: EdgeInsets.all(12.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Add New Scratch Card',
-                              style:
-                                  Theme.of(context).textTheme.button.copyWith(
-                                        color: Colors.white,
-                                      ),
-                            ),
-                          ],
-                        ),
-                        onPressed: model.navigateToScratchCardScreen,
-                      ),
+                    left: 72,
+                    right: 72,
+                    child: Image.asset(
+                      'assets/images/logo_top.png',
+                      fit: BoxFit.contain,
                     ),
                   ),
                   Positioned(
-                    top: 64,
+                    top: 96,
                     bottom: 0,
                     left: 0,
                     right: 0,
                     child: ListView(
                       padding: EdgeInsets.all(16.0),
                       children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.all(8.0),
-                            height: 88.0,
-                            width: 88.0,
-                            child: Image.network(
-                                'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg')),
                         TextFormField(
                           controller: _fnameController,
                           style: Theme.of(context).textTheme.headline6.copyWith(
@@ -363,27 +326,30 @@ class _UserProfileViewState extends State<UserProfileView> {
                     ),
                   ),
                   Positioned(
-                    top: 8,
-                    // bottom: 0,
-                    // left: 0,
+                    top: 16,
                     left: 8,
                     child: InkWell(
                       onTap: () async {
                         Navigator.of(context).pop();
                       },
                       child: Container(
-                        padding: EdgeInsets.all(16.0),
+                        height: 64.0,
+                        width: 64.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(32.0),
-                          color: Theme.of(context).primaryColor,
                         ),
-                        child: Icon(
-                          Icons.arrow_back,
-                          size: 32.0,
-                          color: Colors.white,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: Image.asset('assets/images/back_arrow.png'),
                         ),
                       ),
                     ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset('assets/images/footer.png'),
                   ),
                 ],
               ),

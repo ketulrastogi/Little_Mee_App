@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:little_mee/constants/const.dart';
 import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/views/KitDetails/KitDetailsScreen_ViewModel.dart';
+import 'package:little_mee/ui/widgets/HamburgerMenu/HamburgerMenuWidget_View.dart';
 
 class KitDetailsScreenView extends StatelessWidget {
   final Map<String, dynamic> kitDetails;
@@ -11,6 +12,7 @@ class KitDetailsScreenView extends StatelessWidget {
   const KitDetailsScreenView({Key key, this.kitDetails}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print('KitDetails: $kitDetails');
     return ViewModelBuilder<KitDetailsScreenViewModel>.reactive(
       onModelReady: (model) => model.getBooks(kitDetails),
       viewModelBuilder: () => KitDetailsScreenViewModel(),
@@ -18,30 +20,8 @@ class KitDetailsScreenView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.startFloat,
-            floatingActionButton: Container(
-              height: 64.0,
-              width: 64.0,
-              margin: EdgeInsets.only(bottom: 8.0),
-              padding: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(64.0),
-                color: Color(0xFFFF6D01),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade300,
-                    spreadRadius: 2.0,
-                    blurRadius: 4.0,
-                    offset: Offset(0.0, 4.0),
-                  ),
-                ],
-              ),
-              child: Image.asset(
-                'assets/images/enrichment_icon.png',
-                color: Colors.white,
-              ),
-            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: HamburgerMenuWidgetView(),
             body: Stack(
               children: [
                 Positioned(
@@ -209,22 +189,33 @@ class KitDetailsScreenView extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 8,
-                  right: 8,
+                  bottom: 28.0,
+                  left: 16.0,
                   child: InkWell(
-                    onTap: () async {
-                      await model.signOut();
+                    onTap: () {
+                      model.navigateToDocumentViewerScreen(
+                          kitDetails['worksheet']);
                     },
                     child: Container(
                       height: 64.0,
                       width: 64.0,
+                      margin: EdgeInsets.only(bottom: 8.0),
+                      padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
+                        borderRadius: BorderRadius.circular(64.0),
+                        color: Color(0xFFFF6D01),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 2.0,
+                            blurRadius: 4.0,
+                            offset: Offset(0.0, 4.0),
+                          ),
+                        ],
                       ),
-                      child: Icon(
-                        Icons.power_settings_new,
-                        size: 48.0,
-                        color: Color(0xFF6D6E72),
+                      child: Image.asset(
+                        'assets/images/enrichment_icon.png',
+                        color: Colors.white,
                       ),
                     ),
                   ),

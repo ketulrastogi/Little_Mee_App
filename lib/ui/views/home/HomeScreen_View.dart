@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:little_mee/constants/const.dart';
 import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/views/home/HomeScreen_ViewModel.dart';
+import 'package:little_mee/ui/widgets/HamburgerMenu/HamburgerMenuWidget_View.dart';
 
 class HomeScreenView extends StatelessWidget {
   final List<String> _kitImages = [
@@ -21,6 +22,8 @@ class HomeScreenView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: HamburgerMenuWidgetView(),
             body: Stack(
               children: [
                 // Positioned(
@@ -137,27 +140,7 @@ class HomeScreenView extends StatelessWidget {
                 //     ),
                 //   ),
                 // ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: InkWell(
-                    onTap: () async {
-                      await model.signOut();
-                    },
-                    child: Container(
-                      height: 64.0,
-                      width: 64.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Icon(
-                        Icons.power_settings_new,
-                        size: 48.0,
-                        color: Color(0xFF6D6E72),
-                      ),
-                    ),
-                  ),
-                ),
+
                 Positioned(
                   bottom: 0,
                   left: 0,

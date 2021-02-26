@@ -240,8 +240,7 @@ class Router extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => DocumentViewerScreenView(
           key: args.key,
-          title: args.title,
-          url: args.url,
+          worksheet: args.worksheet,
         ),
         settings: data,
       );
@@ -331,9 +330,8 @@ class TopicDetailsScreenViewArguments {
 /// DocumentViewerScreenView arguments holder class
 class DocumentViewerScreenViewArguments {
   final Key key;
-  final String title;
-  final String url;
-  DocumentViewerScreenViewArguments({this.key, this.title, this.url});
+  final Map<String, dynamic> worksheet;
+  DocumentViewerScreenViewArguments({this.key, this.worksheet});
 }
 
 /// WebViewerScreenView arguments holder class

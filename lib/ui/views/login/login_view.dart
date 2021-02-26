@@ -92,7 +92,7 @@ class LoginView extends StatelessWidget {
                                     color: Colors.grey.shade800,
                                   ),
                               decoration: InputDecoration(
-                                hintText: '9876543210',
+                                hintText: 'Phone Number',
                                 labelText: 'Phone Number',
                                 hintStyle: Theme.of(context)
                                     .textTheme

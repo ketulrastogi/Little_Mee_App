@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/views/BookDetails/BookDetailsScreen_ViewModel.dart';
 import 'package:little_mee/constants/const.dart';
 import 'package:auto_animated/auto_animated.dart';
+import 'package:little_mee/ui/widgets/HamburgerMenu/HamburgerMenuWidget_View.dart';
 
 class BookDetailsScreenView extends StatelessWidget {
   final Map<String, dynamic> kitDetails;
@@ -12,12 +13,15 @@ class BookDetailsScreenView extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print('BookDetails: $bookDetails');
     return ViewModelBuilder<BookDetailsScreenViewModel>.reactive(
       onModelReady: (model) => model.getTopics(bookDetails['id']),
       viewModelBuilder: () => BookDetailsScreenViewModel(),
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: HamburgerMenuWidgetView(),
             body: Stack(
               children: [
                 Positioned(
@@ -81,7 +85,11 @@ class BookDetailsScreenView extends StatelessWidget {
                             left: 0,
                             right: 0,
                             child: LiveList(
-                              padding: EdgeInsets.all(16.0),
+                              padding: EdgeInsets.only(
+                                  top: 16.0,
+                                  left: 16.0,
+                                  right: 16.0,
+                                  bottom: 64.0),
                               showItemInterval: Duration(milliseconds: 150),
                               showItemDuration: Duration(milliseconds: 350),
                               reAnimateOnVisibility: true,
@@ -183,27 +191,6 @@ class BookDetailsScreenView extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(32.0),
                         child: Image.asset('assets/images/back_arrow.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: InkWell(
-                    onTap: () async {
-                      await model.signOut();
-                    },
-                    child: Container(
-                      height: 64.0,
-                      width: 64.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      child: Icon(
-                        Icons.power_settings_new,
-                        size: 48.0,
-                        color: Color(0xFF6D6E72),
                       ),
                     ),
                   ),

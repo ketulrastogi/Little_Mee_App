@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:little_mee/ui/views/ScratchCard/ScratchCardScreen_ViewModel.dart';
+import 'package:little_mee/ui/widgets/HamburgerMenu/HamburgerMenuWidget_View.dart';
 
 class ScratchCardScreenView extends StatelessWidget {
   final TextEditingController _kitController = TextEditingController();
@@ -14,16 +15,8 @@ class ScratchCardScreenView extends StatelessWidget {
       builder: (context, model, child) {
         return SafeArea(
           child: Scaffold(
-            // appBar: AppBar(
-            //   title: Text('Little Mee'),
-            //   // titleSpacing: 4.0,
-            //   centerTitle: true,
-            //   iconTheme: IconThemeData(
-            //     size: 40.0,
-            //     color: Colors.white,
-            //   ),
-            //   automaticallyImplyLeading: false,
-            // ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: HamburgerMenuWidgetView(),
             body: Stack(
               children: [
                 Positioned(
@@ -201,29 +194,6 @@ class ScratchCardScreenView extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  // bottom: 0,
-                  // left: 0,
-                  right: 8,
-                  child: InkWell(
-                    onTap: () async {
-                      await model.signOut();
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      child: Icon(
-                        Icons.exit_to_app,
-                        size: 32.0,
-                        color: Colors.white,
                       ),
                     ),
                   ),

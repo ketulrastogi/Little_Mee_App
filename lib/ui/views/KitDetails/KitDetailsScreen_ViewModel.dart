@@ -68,4 +68,13 @@ class KitDetailsScreenViewModel extends BaseViewModel {
       ),
     );
   }
+
+  navigateToDocumentViewerScreen(Map<String, dynamic> worksheet) {
+    _navigationService.navigateTo(
+      Routes.documentViewerScreenViewRoute,
+      arguments: DocumentViewerScreenViewArguments(
+        worksheet: worksheet,
+      ),
+    );
+  }
 }

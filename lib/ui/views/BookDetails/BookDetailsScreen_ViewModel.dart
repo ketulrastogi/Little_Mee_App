@@ -28,17 +28,14 @@ class BookDetailsScreenViewModel extends BaseViewModel {
       Map<String, dynamic> bookResponse = await _kitService.getTopics(bookId);
 
       if (!bookResponse['result'] || bookResponse['data'] == null) {
-        _snackbarService.showSnackbar(
-            message: 'You have not purchased any Kits. ');
+        _snackbarService.showSnackbar(message: '${bookResponse['message']}. ');
       } else {
         _topicList = [...bookResponse['data']];
         print('BookDetailsViewModel:31 - topicList: $bookResponse');
         notifyListeners();
       }
     } catch (e) {
-      _snackbarService.showSnackbar(
-          message:
-              'An error occured while getting books of kit you purchased. $e.');
+      _snackbarService.showSnackbar(message: '$e.');
     } finally {
       setBusy(false);
     }
@@ -61,15 +58,5 @@ class BookDetailsScreenViewModel extends BaseViewModel {
   signOut() async {
     await _authService.signOut();
     _navigationService.clearStackAndShow(Routes.loginViewRoute);
-  }
-
-  navigateToDocumentViewerScreen(String title, String url) {
-    _navigationService.navigateTo(
-      Routes.documentViewerScreenViewRoute,
-      arguments: DocumentViewerScreenViewArguments(
-        title: title,
-        url: url,
-      ),
-    );
   }
 }
